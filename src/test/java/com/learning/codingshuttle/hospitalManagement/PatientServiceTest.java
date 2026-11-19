@@ -23,17 +23,19 @@ public class PatientServiceTest {
     public void testPatient(){
 
        // List<Patient> patientList=patientRepository.findAll();
-       // List<IPatientInfo> patientList=patientRepository.getPatientInfo();
+     //  List<IPatientInfo> patientList=patientRepository.getPatientInfo();
 
         //List<CPatientInfo> patientList=patientRepository.getAllPatientInfoUsingConcreate();
 
 //        List<BloodGroupStats> patientList=patientRepository.getBloodGroupStats();
-//
-//        for (var p : patientList) {
-//            System.out.println(p);
-//        }
 
-        int updatedRow=patientRepository.updatePatientNameById( "Mohit Singh",5L);
-        System.out.println(updatedRow);
+//      for (var p : patientList) {
+//           System.out.println("patient id is:"+p.getId());
+//          System.out.println("patient name is:"+p.getName());
+//          System.out.println("patient email is:"+p.getEmail());
+//       }
+
+       int updatedRow=patientRepository.updatePatientNameById( "Mukul Gautam",4L);
+       System.out.println(updatedRow);
     }
 }
