@@ -1,10 +1,8 @@
 package com.learning.codingshuttle.hospitalManagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 public class Appointment {
 
     @Id
@@ -27,10 +27,14 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(nullable = false)   //owning side
+    @ToString.Exclude
+    @JsonIgnore
     private  Patient patient;
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Doctor doctor;
 
 

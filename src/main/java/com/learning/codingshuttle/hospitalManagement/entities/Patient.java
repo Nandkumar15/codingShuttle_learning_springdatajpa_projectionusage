@@ -36,12 +36,12 @@ public class Patient {
 
     /// joinColumn should be on the owing side
     /// the unique=true is by default due to one to one mapping
-    ///
-    @OneToOne
+    /// whenever there is change in the patient it will be reflected in the child that is Insurance
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_insurance")
     private Insurance insurance; //owning side one source of truth
 
-    @OneToMany(mappedBy = "patient")   //inverse side
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)   //inverse side
 private Set<Appointment> appointments =new HashSet<>();
 
 }
