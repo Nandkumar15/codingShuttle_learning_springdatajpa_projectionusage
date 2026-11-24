@@ -3,6 +3,7 @@ package com.learning.codingshuttle.hospitalManagement.entities;
 import com.learning.codingshuttle.hospitalManagement.entities.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -42,7 +43,8 @@ public class Patient {
     private Insurance insurance; //owning side one source of truth
 
     //by default one to many mapping has lazy fetch type , this can lead to n+1 select query problem.
-    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    //@BatchSize(size = 3)
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Appointment> appointments =new HashSet<>();
 
 }

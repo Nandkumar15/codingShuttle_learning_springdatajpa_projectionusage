@@ -5,6 +5,7 @@ import com.learning.codingshuttle.hospitalManagement.dto.CPatientInfo;
 import com.learning.codingshuttle.hospitalManagement.dto.IPatientInfo;
 import com.learning.codingshuttle.hospitalManagement.entities.Patient;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,4 +36,11 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     //this will solve the N+1 query problem.
     @Query("SELECT p from Patient p LEFT JOIN FETCH p.appointments")
     List<Patient> getAllPatientWithAppointments();
+
+    //option 2 : @EntityGraph to solve n+1 problem
+    //@EntityGraph(attributePaths = {"appointments"})
+   // @Transactional
+    List<Patient>findAll();
+
+
 }
