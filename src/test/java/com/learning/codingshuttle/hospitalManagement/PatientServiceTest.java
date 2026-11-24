@@ -35,7 +35,19 @@ public class PatientServiceTest {
 //          System.out.println("patient email is:"+p.getEmail());
 //       }
 
-       int updatedRow=patientRepository.updatePatientNameById( "Mukul Gautam",4L);
-       System.out.println(updatedRow);
+//       int updatedRow=patientRepository.updatePatientNameById( "Mukul Gautam",4L);
+//       System.out.println(updatedRow);
+       //this is n+1 query problem
+//        List<Patient>patient =patientRepository.findAll();
+//        for(var p:patient){
+//            System.out.println(p);
+//        }
+
+        //N+1 query optimization solution
+        List<Patient>patient =patientRepository.getAllPatientWithAppointments();
+        for(var p:patient){
+           System.out.println(p);
+        }
+
     }
 }

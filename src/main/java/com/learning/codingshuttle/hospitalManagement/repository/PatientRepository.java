@@ -31,4 +31,8 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     @Modifying
     @Query("UPDATE Patient p set p.name=:name where p.id =:id")
     int updatePatientNameById(@Param("name") String name, @Param("id")Long id);
+
+    //this will solve the N+1 query problem.
+    @Query("SELECT p from Patient p LEFT JOIN FETCH p.appointments")
+    List<Patient> getAllPatientWithAppointments();
 }

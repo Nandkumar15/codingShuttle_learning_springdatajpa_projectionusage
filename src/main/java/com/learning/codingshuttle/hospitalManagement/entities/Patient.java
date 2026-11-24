@@ -37,11 +37,12 @@ public class Patient {
     /// joinColumn should be on the owing side
     /// the unique=true is by default due to one to one mapping
     /// whenever there is change in the patient it will be reflected in the child that is Insurance
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_insurance")
     private Insurance insurance; //owning side one source of truth
 
-    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)   //inverse side
-private Set<Appointment> appointments =new HashSet<>();
+    //by default one to many mapping has lazy fetch type , this can lead to n+1 select query problem.
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Appointment> appointments =new HashSet<>();
 
 }
